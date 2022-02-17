@@ -1,6 +1,7 @@
 // import { doctorLists } from '../data';
 import React, { useState,useEffect } from 'react';
 import appointment from '../assets/Images/appointment.svg'; 
+import { useNavigate } from 'react-router-dom';
 import { 
     Container,
     Title,
@@ -17,13 +18,14 @@ import {
 } from "./Styled";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+
 const BookAppointmnet = () => {
     const theme = useSelector((state) => state.theme);
     const [date, SetDate] = useState("");
     const [time, SetTime] = useState("");
     const [doctor, SetDoctor] = useState([]);
     const [appointmentName, SetAppointmentName] = useState("");
-
+    let navigate = useNavigate();
     useEffect(()=>{
         axios.get('http://localhost:5003/api/doctors/')
         .then(res=>{
@@ -41,6 +43,8 @@ const BookAppointmnet = () => {
             time,
             appointmentName,
     });
+    alert("Data Saved");
+    navigate('/');
         
     }
     
@@ -101,7 +105,7 @@ const BookAppointmnet = () => {
                     </InputWrapper>
 
 
-                    <Button onClick={book} bgColor={theme.primary} hover={theme.secondary}>ADD</Button>
+                    <Button onClick={book} bgColor={theme.primary}  hover={theme.secondary}>ADD</Button>
                 </FormWrapper>
 
             </Wrapper>

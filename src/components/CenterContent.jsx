@@ -182,16 +182,29 @@ const CenterContent = () => {
     }
 
     const [doctor,SetDoctor] = useState([]);
-    // useEffect(()=>{
-    //     axios.get('http://localhost:5003/api/doctors/')
-    //     .then(res=>{
-    //     //   console.log(res)
-    //       SetDoctor(res.data)
-    //     })
-    //     .catch(err =>{   
-    //       console.log(err)
-    //     })
-    //   })
+    const [appointment,SetAppointment] = useState([]);
+
+    useEffect(()=>{
+        axios.get('http://localhost:5003/api/doctors/')
+        .then(res=>{
+        //   console.log(res)
+          SetDoctor(res.data)
+        })
+        .catch(err =>{
+          console.log(err)
+        })
+      })
+
+      useEffect(()=>{
+        axios.get('http://localhost:5003/api/appointments/')
+        .then(res=>{
+        //   console.log(res)
+          SetAppointment(res.data)
+        })
+        .catch(err =>{
+          console.log(err)
+        })
+      })
     return (
              
             <Container>

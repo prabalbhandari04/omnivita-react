@@ -11,16 +11,13 @@ import "./File.scss";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { update } from "../redux/userSlice";
-
+import { useNavigate } from "react-router-dom";
 
 
 const Settings = () => {
     const theme = useSelector((state) => state.theme);
 
-    const logout = function(){
-        localStorage.clear();
-        window.location.href = '/';
-    }
+    
 
     const Container = styled.div`
         width: 100%;
@@ -44,7 +41,7 @@ const Settings = () => {
             padding: "1rem"
         })}
     `
-    
+    let navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
 
@@ -55,6 +52,11 @@ const Settings = () => {
         e.preventDefault();
         dispatch(update({username, email}))
     };
+    
+    const logout = async () => {
+        localStorage.clear();
+        navigate("/login");
+    }
 
     return (
         <main style={{width: "100%", display: "flex"}}>
@@ -104,6 +106,7 @@ const Settings = () => {
                     <Button
                         onClick={logout}
                         bgColor={theme.primary} hover={theme.secondary}
+                        
                     >
                         LOGOUT
                     </Button>

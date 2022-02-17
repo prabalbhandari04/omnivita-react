@@ -17,11 +17,12 @@ import {
 } from "./Styled";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 const ClinicAdd = () => {    
     const theme = useSelector((state) => state.theme);
     const [districts, setDistricts] = useState([]);
-    
+    let navigate = useNavigate();
     const [clinicname,SetClinicname] = useState('');
     const [city,SetCity] = useState('');
     const [address,SetAddress] = useState('');
@@ -43,7 +44,8 @@ const ClinicAdd = () => {
             address,
             phone
         });
-        
+        alert("Data Saved");
+        navigate('/');
     }
 
 

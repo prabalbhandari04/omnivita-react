@@ -3,19 +3,20 @@ import showPwdImg from '../assets/Images/visibility.png';
 import hidePwdImg from '../assets/Images/visibility-off.png';
 import axios from 'axios';
 import { Container, Wrapper, Title, Desc, Form, InputContainer, Input, Link, Button} from './Login';
+import { useNavigate } from "react-router-dom";
 const Regsiter = () => {
     const [email,SetEmail] = useState("")
     const [password, setPassword] = useState('');
-    
+    let navigate = useNavigate();
     const [isRevealPwd, setIsRevealPwd] = useState(false);
 
     const submitRegister = async () => {
-        axios.post(`http://localhost:1000/Auth/signup`, {
+        axios.post(`http://localhost:5003/Auth/register`, {
             email,
             password
         });
-        
-        
+        navigate("/login");
+        alert("Hello! Welcome to Omnivita. Please login to continue.");
     }
     
     return (
@@ -65,7 +66,7 @@ const Regsiter = () => {
                         </b>
                     </Desc>
 
-                    <Button onClick={submitRegister} ><Link  style={{color:"black"}} href="/login">REGISTER NOW</Link></Button>
+                    <Button onClick={submitRegister} ><Link  style={{color:"black"}} >REGISTER NOW</Link></Button>
                 </Form>
             </Wrapper>
         </Container>

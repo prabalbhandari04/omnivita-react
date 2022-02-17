@@ -17,21 +17,22 @@ import {
     Button
 } from "./Styled";
 import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom';
 
 const Symptoms = () => {
     const theme = useSelector((state) => state.theme);
-    
+    let navigate = useNavigate();
     const [symptomTime, SetSymptomTime] = useState("");
-  const [symptomDate, SetSymptomDate] = useState("");
-  const [symptomInfo, SetSymptomInfo] = useState("");
-
-
+    const [symptomDate, SetSymptomDate] = useState("");
+    const [symptomInfo, SetSymptomInfo] = useState("");
 
     const submit = async () => {
         axios.post(`http://localhost:5003/api/symptoms/`, {
             symptomDate,
             symptomTime,
             symptomInfo    });
+            alert("Data Saved");
+            navigate('/');
     }
     
 

@@ -17,6 +17,7 @@ import {
 } from "./Styled";
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorsAdd = () => {
     const theme = useSelector((state) => state.theme);
@@ -24,7 +25,7 @@ const DoctorsAdd = () => {
     const[firstname,SetFirstname] = useState("");
     const[lastname,SetLastname] = useState("");
     const [phone,SetPhone] = useState("");
-
+    let navigate = useNavigate();
     useEffect(()=>{
         axios.get('http://localhost:5003/api/clinics/')
         .then(res=>{
@@ -41,9 +42,9 @@ const DoctorsAdd = () => {
             firstname,
             lastname,
             phone
-
         });
-        
+        alert("Data Saved");
+        navigate('/');
     }
 
     return (
@@ -126,7 +127,7 @@ const DoctorsAdd = () => {
                     </InputWrapper>
 
 
-                    <Button onClick={submitDoctor} bgColor={theme.primary} hover={theme.secondary}>ADD</Button>
+                    <Button onClick={submitDoctor} bgColor={theme.primary}  hover={theme.secondary}>ADD</Button>
                 </FormWrapper>
             </Wrapper>
         </Container>

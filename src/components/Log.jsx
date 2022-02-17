@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 import { doctorLists } from '../data';
 import log from '../assets/Images/log.svg'; 
 import { 
@@ -28,7 +28,7 @@ const Log = () => {
     const [visitPurpose, SetVisitPurpose] = useState("");
     const [height, SetHeight] = useState("");
     const [ weight,SetWeight] = useState("");
-
+    let navigate = useNavigate();
       useEffect(()=>{
           axios.get('http://localhost:5003/api/doctors/')
           .then(res=>{
@@ -49,6 +49,8 @@ const Log = () => {
               weight
 
       });
+      alert("Data Saved");
+      navigate('/');
       }
   
   
@@ -124,7 +126,7 @@ const Log = () => {
                 </InputWrapper>
 
 
-                <Button onClick={submit} bgColor = {theme.primary} hover ={theme.secondary}>SUBMIT LOG</Button>
+                <Button onClick={submit} bgColor = {theme.primary}  hover ={theme.secondary}>SUBMIT LOG</Button>
             </FormWrapper>
         </Wrapper>
     </Container>

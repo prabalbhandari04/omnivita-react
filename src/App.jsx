@@ -14,13 +14,13 @@ import Settings from "./pages/Settings";
 
 
 function App() {
-  const user = true;
+  const user = null;
   
 
   return (
     <Router>
         <Routes>
-          <Route path="/" exact element={ user ? <Home /> : <Navigate to = "/login" />} />
+          {/* <Route path="/" exact element={ user ? <Home /> : <Navigate to = "/login" />} />
           <Route path="/login" element={ user ? <Navigate to = "/" /> : <Login />} />
           <Route path="/register" element={ user ? <Navigate to = "/" /> : <Register />} />
           <Route path="/book" element={ user ? <Appointment /> : <Navigate to = "/login" />} />
@@ -31,8 +31,19 @@ function App() {
           <Route path="/clinic" element={ user ? <Clinic /> : <Navigate to = "/login" />} />
           <Route path="/settings" element={ user ? <Settings /> : <Navigate to = "/login" />} />
           <Route path="/login/forgot" element={ user? <Navigate to = "/" /> : <ForgotPassword />} />
-          <Route path="/login/forgot/change" element={ user? <Navigate to = "/" /> : <ChangePassword />} />
-
+          <Route path="/login/forgot/change" element={ user? <Navigate to = "/" /> : <ChangePassword />} /> */}
+          <Route path="/" exact element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/book" element={<Appointment />} />
+          <Route path="/log" element={<HealthLog /> } />
+          <Route path="/symptom" element={<Symptom />} />
+          <Route path="/prescription" element={<Prescription />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/clinic" element={<Clinic />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/login/forgot" element={<ForgotPassword />} />
+          <Route path="/login/forgot/change" element={<ChangePassword />} />
         </Routes>
       </Router>
   );

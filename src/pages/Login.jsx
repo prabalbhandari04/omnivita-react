@@ -5,6 +5,9 @@ import { white, background, primary, secondary, text } from "../assets/Colors";
 import showPwdImg from '../assets/Images/visibility.png';
 import hidePwdImg from '../assets/Images/visibility-off.png';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
 export const Container = styled.div`
     width: 100vw;
     height: 100vh;
@@ -98,45 +101,14 @@ const Login = () => {
     const [email,SetEmail] = useState("")
     const [password, setPassword] = useState('');
     const [isRevealPwd, setIsRevealPwd] = useState(false);
+    const [user, setUser] = useState(null);
+    let navigate = useNavigate();
 
-    // const submitLogin = async () => {
-    //     axios.post(`http://localhost:1000/Auth/login`, {
-    //         email,
-    //         password
-    //     });
-        
-        
-    // }
+    const submitLogin = async () => {
+        alert("Redirecting");
+        navigate("/");
+    }
 
-      // When user enters credentials and clicks LOG IN button to log in.
-      const handleFormSubmit = event => {
-        const { history, setUser } = this.props;
-        event.preventDefault();
-    
-        // If username field is empty when user submits form, show error.
-        if (this.state.username === "") {
-          this.setState({
-            usernameMissingError: "Username is required."
-          })
-        }
-    
-        // If the password field is empty when user submits form, show error.
-        if (this.state.password === "") {
-          this.setState({
-            passwordMissingError: "Password is required."
-          })
-        }
-    
-        setUser("i am the user")
-        axios.post('/Auth/login', { username: this.state.username, password: this.state.password})
-          .then((res) => {
-            console.log(res.data);
-            setUser(res.data.userId)
-            history.push('/home')
-            
-          })
-          .catch(err => console.log(err))
-      };
     
     return (
         <Container>
@@ -174,7 +146,7 @@ const Login = () => {
 
                     <Link style={{marginTop: "0.5rem"}} href="/login/forgot">Forgot Password</Link>
 
-                    <Button onSubmit={handleFormSubmit}><Link  style={{color:"black"}} href="http://localhost:3000">LOGIN NOW</Link></Button>
+                    <Button onSubmit={submitLogin}><Link  href="http://localhost:3000" style={{color:"black"}} >LOGIN NOW</Link></Button>
                 </Form>
             </Wrapper>
         </Container>

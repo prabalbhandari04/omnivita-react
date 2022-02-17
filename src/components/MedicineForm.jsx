@@ -19,8 +19,10 @@ import {
     Button
 } from "./Styled";
 import { useSelector } from "react-redux";
+import {useNavigate} from 'react-router-dom';
 
 const MedicineForm = () => {
+    let navigate = useNavigate();
   const theme = useSelector((state) => state.theme);
   const [doctor, SetDoctor] = useState([]);
   const [prescriptionName , SetPrescriptionName] = useState("");
@@ -47,6 +49,8 @@ const MedicineForm = () => {
             medName,
             generalinstructions
     });
+    alert("Data Saved");
+    navigate('/');
     }
 
 
@@ -133,7 +137,7 @@ const MedicineForm = () => {
                             onChange={e => SetGeneralinstructions(e.target.value)} />
                 </InputWrapper>
 
-                <Button onClick={submit} bgColor = {theme.primary} hover = {theme.secondary}>SUBMIT</Button>
+                <Button onClick={submit} bgColor = {theme.primary} hover = {theme.secondary} >SUBMIT</Button>
             </FormWrapper>
 
         </Wrapper>
